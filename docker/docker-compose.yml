@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:15.14-alpine
+    container_name: 'pl-db'
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: planify
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pl-db-data:/var/lib/postgresql/pgdata
+    profiles: ['dev']
+
+  pg-admin:
+    image: dpage/pgadmin4:9.8.0
+    container_name: 'pl-pgadmin'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: qwerty
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    depends_on:
+      - postgres
+    volumes:
+      - pl-pgadmin-data:/var/lib/pgadmin
+    profiles: ['dev']
+
+  pl-app:
+    build:
+      context: ..
+      dockerfile: docker/images/planify/Dockerfile
+    container_name: pl-app
+    depends_on:
+      - postgres
+    command: ["poetry", "run", "python", "src/main.py"]
+
+    profiles: ['dev']
+
+volumes:
+  pl-db-data:
+  pl-pgadmin-data:
