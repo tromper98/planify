@@ -8,6 +8,10 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "pytest==8.4.2",
+    "sqlalchemy==2.0.44",
+    "alembic==1.17.0",
+
 ]
 
 [tool.poetry]
@@ -15,11 +19,6 @@ package-mode = false
 packages = [
     { include = 'src'}
 ]
-
-[tool.poetry.dependencies]
-python = "3.13.7"
-pytest = '8.4.2'
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
