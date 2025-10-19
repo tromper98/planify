@@ -8,7 +8,6 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "pytest==8.4.2"
 ]
 
 [tool.poetry]
@@ -16,6 +15,10 @@ package-mode = false
 packages = [
     { include = 'src'}
 ]
+
+[tool.poetry.dependencies]
+python = "3.13.7"
+pytest = '8.4.2'
 
 
 [build-system]
