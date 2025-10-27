@@ -12,4 +12,6 @@ if [ ! -f "$OVERRIDE_FILE" ]; then
     exit 0
 fi
 
-docker compose -f "$COMPOSE_FILE" -f "$OVERRIDE_FILE" --profile dev down
+docker compose -f "$COMPOSE_FILE" -f "$OVERRIDE_FILE" --profile app down
+docker compose -f "$COMPOSE_FILE" -f "$OVERRIDE_FILE" --profile init down
+docker compose -f "$COMPOSE_FILE" -f "$OVERRIDE_FILE" --profile db down

@@ -1,0 +1,1 @@
+PLANIFY_DATABASE_DSN=postgresql://admin:qwerty@pl-db:5432/planify

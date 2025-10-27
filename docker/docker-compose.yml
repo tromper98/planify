@@ -7,9 +7,11 @@ services:
       POSTGRES_PASSWORD: qwerty
       POSTGRES_DB: planify
       PGDATA: /var/lib/postgresql/data/pgdata
+    env_file:
+      - config/env
     volumes:
       - pl-db-data:/var/lib/postgresql/pgdata
-    profiles: ['dev']
+    profiles: ['db']
 
   pg-admin:
     image: dpage/pgadmin4:9.8.0
@@ -22,18 +24,30 @@ services:
       - postgres
     volumes:
       - pl-pgadmin-data:/var/lib/pgadmin
-    profiles: ['dev']
+    profiles: ['db']
 
   pl-app:
     build:
       context: ..
       dockerfile: docker/images/planify/Dockerfile
+    env_file:
+      - config/env
     container_name: pl-app
-    depends_on:
-      - postgres
-    command: ["poetry", "run", "python", "src/main.py"] # replace command by  ["tail", "-f", "/dev/null"] to prefer killing container after app finished
+    command: ["tail", "-f", "/dev/null"] # replace command by  ["tail", "-f", "/dev/null"] to prefer killing container after app finished
+    profiles: ['app']
 
-    profiles: ['dev']
+  pl-db-init:
+    build:
+      context: ..
+      dockerfile: docker/images/planify/Dockerfile
+    container_name: 'pl-db-init'
+    env_file:
+      - config/env
+    volumes:
+      - pl-db-data:/var/lib/postgresql/pgdata
+    command: ['poetry', 'run', 'alembic', '-c', 'pyproject.toml', 'upgrade', 'head']
+    profiles: ['init']
+
 
 volumes:
   pl-db-data:
