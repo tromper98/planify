@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:15.14-alpine
+    container_name: 'pl-db-tests'
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: pl-test-db
+      PGDATA: /var/lib/postgresql/data/pgdata
+    env_file:
+      - config/env
+    volumes:
+      - pl-db-tests-data:/var/lib/postgresql/pgdata
+    ports:
+      - '127.0.0.1:6432:6432'
+    profiles: ['db']
+
+
+  pl-integration-tests:
+    build:
+      context: ../..
+      dockerfile: docker/tests/images/planify/Dockerfile
+    env_file:
+      - config/env
+    container_name: "pl-integration-tests"
+    command: ["poetry", "run", "pytest", "tests/integration", "-v"]
+    profiles: ['app']
+
+  pl-db-init:
+    build:
+      context: ../..
+      dockerfile: docker/tests/images/planify/Dockerfile
+    container_name: 'pl-db-init-tests'
+    env_file:
+      - config/env
+    volumes:
+      - pl-db-tests-data:/var/lib/postgresql/pgdata
+    command: ['poetry', 'run', 'alembic', '-c', 'pyproject.toml', 'upgrade', 'head']
+    profiles: ['init']
+
+
+volumes:
+  pl-db-tests-data:

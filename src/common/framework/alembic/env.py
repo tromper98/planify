@@ -12,7 +12,7 @@ import os
 # access to the values within the .ini file in use.
 config = context.config
 
-database_url = os.getenv('PLANIFY_DATABASE_DSN')
+database_url = os.getenv('PLANIFY_DB_DSN')
 
 if not database_url:
     raise RuntimeError("DSN string not found in environment")

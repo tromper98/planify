@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# set -e
+
+
+PROJECT_DIR="$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
+COMPOSE_FILE="$PROJECT_DIR/docker/tests/test-docker-compose.yml"
+
+docker compose -f "$COMPOSE_FILE" --profile db build --no-cache
+docker compose -f "$COMPOSE_FILE" --profile init build --no-cache
+docker compose -f "$COMPOSE_FILE" --profile app build --no-cache

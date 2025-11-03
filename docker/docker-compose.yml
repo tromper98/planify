@@ -33,7 +33,7 @@ services:
     env_file:
       - config/env
     container_name: pl-app
-    command: ["tail", "-f", "/dev/null"] # replace command by  ["tail", "-f", "/dev/null"] to prefer killing container after app finished
+    command: ["poetry", "run", "python", "src/main.py"] # replace command by  ["tail", "-f", "/dev/null"] to prefer killing container after app finished
     profiles: ['app']
 
   pl-db-init:

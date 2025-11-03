@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+COMPOSE_FILE="docker/tests/test-docker-compose.yml"
+
+docker compose -f "$COMPOSE_FILE" --profile app --profile init --profile db down -v --remove-orphans 2>/dev/null || true
+
+
+docker compose -f "$COMPOSE_FILE" --profile db up -d
+docker compose -f "$COMPOSE_FILE" --profile init up
+docker compose -f "$COMPOSE_FILE" --profile app up --abort-on-container-exit
+
+docker compose -f "$COMPOSE_FILE" --profile app --profile int --profile db down -v --remove-orphans 2>/dev/null || true

@@ -1,0 +1,1 @@
+PLANIFY_DB_DSN=postgresql://test:qwerty@pl-db-tests:5432/pl-test-db
