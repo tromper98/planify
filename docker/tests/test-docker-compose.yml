@@ -22,6 +22,11 @@ services:
       dockerfile: docker/tests/images/planify/Dockerfile
     env_file:
       - config/env
+    volumes:
+      - ../../src:/app/src
+      - ../../tests:/app/tests
+      - ../../pyproject.toml:/app/pyproject.toml
+      - ../../poetry.lock:/app/poetry.lock
     container_name: "pl-integration-tests"
     command: ["poetry", "run", "pytest", "tests/integration", "-v"]
     profiles: ['app']
