@@ -32,6 +32,7 @@ services:
       dockerfile: docker/images/planify/Dockerfile
     env_file:
       - config/env
+      - config/env.local
     container_name: pl-app
     command: ["poetry", "run", "python", "src/main.py"] # replace command by  ["tail", "-f", "/dev/null"] to prefer killing container after app finished
     profiles: ['app']

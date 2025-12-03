@@ -1,5 +1,7 @@
 .idea/
 
 docker/docker-compose.override.yml
+docker/config/env.local
 __pycache__/
 poetry.lock
+

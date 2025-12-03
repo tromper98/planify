@@ -1,1 +1,1 @@
-from .run import *
+from .tg_handler import *
