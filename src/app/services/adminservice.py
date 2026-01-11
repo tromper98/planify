@@ -1,6 +1,0 @@
-class AdminService:
-    def __init__(self):
-        ...
-
-    def add_admin(self) -> None:
-        ...

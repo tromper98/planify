@@ -1,2 +1,4 @@
-from .slotservice import SlotService
-from .adminservice import AdminService
+from .slot import SlotService
+from .user import UserService
+from .appointment import AppointmentService
+from .client import ClientService

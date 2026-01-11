@@ -1,9 +1,9 @@
 import logging
 from typing import Optional
 from datetime import date, datetime
-from sqlalchemy import select, text
+from sqlalchemy import select
 
-from src.app.entities import Slot, AppointmentStatusEnum
+from src.app.models import Slot
 from src.infrastructure.databaseengine import DatabaseEngine
 
 logger = logging.getLogger(__name__)
