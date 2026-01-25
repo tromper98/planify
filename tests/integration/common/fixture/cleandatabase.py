@@ -1,6 +1,6 @@
 import pytest
 from sqlalchemy import text
-from src.infrastructure.databaseengine import DatabaseEngine
+from src.infrastructure.postgres.databaseengine import DatabaseEngine
 
 @pytest.fixture
 def clean_database():

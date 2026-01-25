@@ -4,7 +4,7 @@ from datetime import datetime
 
 from src.app.models import Slot
 from src.app.services import SlotService
-from src.infrastructure.databaseengine import DatabaseEngine
+from src.infrastructure.postgres.databaseengine import DatabaseEngine
 
 from tests.integration.common.fixture import clean_database
 

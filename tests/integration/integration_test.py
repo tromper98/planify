@@ -1,7 +1,5 @@
-import pytest
-
 from sqlalchemy import text
-from src.infrastructure.databaseengine import DatabaseEngine
+from src.infrastructure.postgres.databaseengine import DatabaseEngine
 
 from tests.integration.common.fixture import clean_database
 

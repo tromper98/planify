@@ -4,7 +4,7 @@ from datetime import date, datetime
 from sqlalchemy import select
 
 from src.app.models import Slot
-from src.infrastructure.databaseengine import DatabaseEngine
+from src.infrastructure.postgres.databaseengine import DatabaseEngine
 
 logger = logging.getLogger(__name__)
 
@@ -42,3 +42,5 @@ class SlotService:
                 Slot.start_time.between(start_of_day, end_of_day)) \
                 .order_by(Slot.start_time)
             return list(session.scalars(stmt).all())
+
+    # TODO Добавить проверку на пересечение при добавлении слота с другими слотами

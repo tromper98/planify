@@ -3,7 +3,7 @@ from typing import Optional
 from sqlalchemy import select
 
 from src.app.models import User
-from src.infrastructure.databaseengine import DatabaseEngine
+from src.infrastructure.postgres.databaseengine import DatabaseEngine
 
 logger = logging.getLogger(__name__)
 
@@ -32,3 +32,8 @@ class UserService:
                 raise ValueError(f"Admin with id {user_id} not found")
 
         return user
+
+    def get_user_by_tg_id_if_exists(self, tg_user_id: int) -> Optional[User]:
+        with self._engine.session() as session:
+            stmt = select(User).where(User.tg_user_id == tg_user_id)
+            return session.scalars(stmt).one_or_none()

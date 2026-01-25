@@ -24,7 +24,7 @@ class User(Base):
     def __eq__(self, other):
         if self.user_id != other.user_id:
             return False
-        if self.tg_user_id != other.tg_user_id:
+        if self.tg_user_id != other.tg_client_id:
             return False
         if self.first_name != other.first_name:
             return False

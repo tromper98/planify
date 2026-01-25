@@ -41,7 +41,7 @@ def upgrade() -> None:
     op.create_table(
         'client',
         sa.Column('client_id', sa.INTEGER, primary_key=True, autoincrement=True),
-        sa.Column('tg_user_id', sa.INTEGER, unique=True),
+        sa.Column('tg_client_id', sa.INTEGER, unique=True),
         sa.Column('first_name', sa.VARCHAR(255)),
         sa.Column('last_name', sa.VARCHAR(255)),
         sa.Column('created_at', sa.TIMESTAMP, nullable=False, default=sa.text('NOW()')),

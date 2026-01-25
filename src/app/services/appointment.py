@@ -3,7 +3,7 @@ from typing import Optional
 from sqlalchemy import select
 
 from src.app.models import Appointment, AppointmentStatus, Slot
-from src.infrastructure.databaseengine import DatabaseEngine
+from src.infrastructure.postgres.databaseengine import DatabaseEngine
 
 logger = logging.getLogger(__name__)
 

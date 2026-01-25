@@ -18,7 +18,7 @@ client = Table(
     'client',
     metadata,
     Column('client_id', INTEGER, primary_key=True, autoincrement=True),
-    Column('tg_user_id', INTEGER, unique=True),
+    Column('tg_client_id', INTEGER, unique=True),
     Column('first_name', VARCHAR(255)),
     Column('last_name', VARCHAR(255)),
     Column('created_at', TIMESTAMP, nullable=False, default=text('NOW()')),

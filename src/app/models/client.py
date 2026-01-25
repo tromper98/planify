@@ -11,7 +11,7 @@ from .base import Base
 @dataclass
 class Client(Base):
     client_id: Mapped[int]
-    tg_user_id: Mapped[str]
+    tg_client_id: Mapped[int]
     first_name: Mapped[str]
     last_name: Mapped[str]
     created_at: Mapped[Optional[datetime]]
@@ -24,7 +24,7 @@ class Client(Base):
     def __eq__(self, other):
         if self.client_id != other.client_id:
             return False
-        if self.tg_user_id != other.tg_user_id:
+        if self.tg_client_id != other.tg_client_id:
             return False
         if self.first_name != other.first_name:
             return False

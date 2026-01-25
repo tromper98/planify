@@ -5,7 +5,7 @@ from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import sessionmaker, Session
 
-from .envconfig import EnvConfig
+from src.infrastructure.env.envconfig import EnvConfig
 
 DEFAULT_CONN_OPTIONS = {
     'pool_size': 5,
