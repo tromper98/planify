@@ -12,7 +12,6 @@ class Slot(Base):
     start_time: Mapped[datetime]
     end_time: Mapped[datetime]
     duration_in_minutes: Mapped[int]
-    is_free: Mapped[bool]
     __table__ = slot
 
     def __repr__(self):
